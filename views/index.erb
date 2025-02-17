@@ -1,0 +1,86 @@
+<h1><%= title %></h1>
+
+Output generated: <%= Time.now %>
+<pre>
+<table>
+  <tr> 
+  <td bgcolor='Red' style="color: red;"> text </td> <td> DOWN </td>
+  <td bgcolor='Green' style="color: Green;"> text </td> <td> UP </td>
+  <td bgcolor='#696969' style="color: #696969;"> text </td> <td> = 100% </td>
+  <td bgcolor='#909090' style="color: #909090;"> text </td> <td> < 100% </td>
+  <td bgcolor='#D0D0D0' style="color: #D0D0D0;"> text </td> <td> <= 50% </td>
+  <td bgcolor='#E8E8E8' style="color: #E8E8E8;"> text </td> <td> <= 25% </td> 
+  <td bgcolor='White' style="color: white;"> text </td> <td> = 0% </td> 
+  </tr>
+</table>
+</pre>
+
+<button type="button" class="collapsible">View usage of all GPU nodes (allocated/total)</button>
+<div class="content">
+<!--
+<br>
+<div>
+-->
+<% count = 0 %>
+<% last_partition="None" %>
+<table>
+  <% @gpu_public_node_status.each do |line| %>
+  <!-- start a new row when a new partition appears -->
+  <% if line.partition != last_partition || count%10 == 0 %>
+  <tr>
+    <% count = 0 %>
+    <td><%= line.partition %></td>
+  <% end %>
+  <% last_partition = line.partition %>
+  <% count = count+1 %>
+    <td>
+      <table>
+          <tr><td bgcolor=<%= line.node_color %>><%= line.nodename %></td></tr>
+	  <% if line.cpu_alloc == "" %>
+          <tr><td bgcolor='White' style="color:White"> test </td></tr>
+          <tr><td bgcolor='White' style="color:White"> test </td></tr>
+	  <% else %>
+          <tr><td bgcolor=<%= line.cpu_color %>><%= line.cpu_alloc %>/<%= line.cpu_tot %></td></tr>
+          <tr><td bgcolor=<%= line.mem_color %>><%= line.mem_alloc %>G/<%= line.mem_tot %>G</td></tr>
+          <% end %>
+          <tr><td bgcolor=<%= line.node_color %>><b><%= line.gpu_type %></b></td></tr>
+          <tr><td bgcolor=<%= line.gpu_color %>><%= line.gpu_alloc %>/<%= line.gpu_tot %></td></tr>
+      </table>
+    </td>
+  <% if count%10 == 0 %>
+  </tr>
+  <% end %>
+  <% end %>
+</table>
+</div>
+<button type="button" class="collapsible">View usage of all CPU nodes (allocated/total)</button>
+<div class="content">
+<!--
+<div>
+-->
+<% count = 0 %>
+<% last_partition="None" %>
+<table>
+  <% @cpu_public_node_status.each do |line| %>
+  <!-- start a new row when a new partition appears -->
+  <% if line.partition != last_partition || count%10 == 0 %>
+  <tr>
+    <% count = 0 %>
+    <td><%= line.partition %></td>
+  <% end %>
+  <% last_partition = line.partition %>
+  <% count = count+1 %>
+    <td>
+      <table>
+          <tr><td bgcolor=<%= line.node_color %>><%= line.nodename %></td></tr>
+          <tr><td bgcolor=<%= line.cpu_color %>><%= line.cpu_alloc %>/<%= line.cpu_tot %></td></tr>
+          <tr><td bgcolor=<%= line.mem_color %>><%= line.mem_alloc %>G/<%= line.mem_tot %>G</td></tr>
+      </table>
+    </td>
+  <% if count%10 == 0 %>
+  </tr>
+  <% end %>
+  <% end %>
+</table>
+</div>
+

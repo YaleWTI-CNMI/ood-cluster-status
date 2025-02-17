@@ -1,0 +1,21 @@
+current directory: /gpfs/radev/apps/services/ood/share/apps/ycrc_cluster_status/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+/usr/bin/ruby -I /usr/share/rubygems -r ./siteconf20240403-290188-4962hm.rb extconf.rb
+creating Makefile
+
+current directory: /gpfs/radev/apps/services/ood/share/apps/ycrc_cluster_status/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= clean
+rm -f 
+rm -fr fastfilereaderext.so false *.o  *.bak mkmf.log .*.time
+
+current directory: /gpfs/radev/apps/services/ood/share/apps/ycrc_cluster_status/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\=
+g++ -I. -I/usr/include -I/usr/include/ruby/backward -I/usr/include -I. -DBUILD_FOR_RUBY -DOS_UNIX    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -m64 -o mapper.o -c mapper.cpp
+g++ -I. -I/usr/include -I/usr/include/ruby/backward -I/usr/include -I. -DBUILD_FOR_RUBY -DOS_UNIX    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -m64 -o rubymain.o -c rubymain.cpp
+rm -f fastfilereaderext.so
+g++ -shared -o fastfilereaderext.so mapper.o rubymain.o -L. -L/usr/lib64 -L. -Wl,-z,relro  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed -Wl,-z,relro  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld  -m64  -lruby  -lm  -lc
+
+current directory: /gpfs/radev/apps/services/ood/share/apps/ycrc_cluster_status/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= install
+/usr/bin/mkdir -p . ./.gem.20240403-290188-t71j35
+exit > .sitearchdir.time
+/usr/bin/install -c -m 0755 fastfilereaderext.so ./.gem.20240403-290188-t71j35

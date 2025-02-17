@@ -1,0 +1,4 @@
+cluster: Misha
+name: Cluster Node Status
+description: Display node usage in a table
+category: Utilities
